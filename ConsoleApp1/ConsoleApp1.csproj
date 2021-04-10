@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AudioSwitcher.AudioApi.CoreAudio\AudioSwitcher.AudioApi.CoreAudio.csproj" />
+    <ProjectReference Include="..\AudioSwitcher.AudioApi\AudioSwitcher.AudioApi.csproj" />
+  </ItemGroup>
+
+</Project>

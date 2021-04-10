@@ -3,7 +3,7 @@ using AudioSwitcher.AudioApi.CoreAudio.Interfaces;
 
 namespace AudioSwitcher.AudioApi.CoreAudio
 {
-    internal static class PolicyConfig
+    static public class PolicyConfig
     {
         public static void SetDefaultEndpoint(string devId, ERole eRole)
         {

@@ -3,7 +3,7 @@
 namespace AudioSwitcher.AudioApi.CoreAudio
 {
     [Flags]
-    internal enum ERole : uint
+    public enum ERole : uint
     {
         Console = 0,
         Multimedia = 1,

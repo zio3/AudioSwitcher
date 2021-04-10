@@ -34,23 +34,23 @@ namespace AudioSwitcher.AudioApi.CoreAudio
 
             _innerEnumerator = new ThreadLocal<IMultimediaDeviceEnumerator>(() => Marshal.GetUniqueObjectForIUnknown(_innerEnumeratorPtr) as IMultimediaDeviceEnumerator);
 
-            ComThread.Invoke(() =>
-            {
-                _systemEvents = new SystemEventNotifcationClient(() => InnerEnumerator);
+            //ComThread.Invoke(() =>
+            //{
+            //    _systemEvents = new SystemEventNotifcationClient(() => InnerEnumerator);
 
-                _systemEvents.DeviceAdded.Subscribe(x => OnDeviceAdded(x.DeviceId));
-                _systemEvents.DeviceRemoved.Subscribe(x => OnDeviceRemoved(x.DeviceId));
+            //    _systemEvents.DeviceAdded.Subscribe(x => OnDeviceAdded(x.DeviceId));
+            //    _systemEvents.DeviceRemoved.Subscribe(x => OnDeviceRemoved(x.DeviceId));
 
-                _deviceCache = new HashSet<CoreAudioDevice>();
-                IMultimediaDeviceCollection collection;
-                InnerEnumerator.EnumAudioEndpoints(EDataFlow.All, EDeviceState.All, out collection);
+            //    _deviceCache = new HashSet<CoreAudioDevice>();
+            //    IMultimediaDeviceCollection collection;
+            //    InnerEnumerator.EnumAudioEndpoints(EDataFlow.All, EDeviceState.All, out collection);
 
-                using (var coll = new MultimediaDeviceCollection(collection))
-                {
-                    foreach (var mDev in coll)
-                        CacheDevice(mDev);
-                }
-            });
+            //    using (var coll = new MultimediaDeviceCollection(collection))
+            //    {
+            //        foreach (var mDev in coll)
+            //            CacheDevice(mDev);
+            //    }
+            //});
         }
 
         internal SystemEventNotifcationClient SystemEvents => _systemEvents;
@@ -221,7 +221,7 @@ namespace AudioSwitcher.AudioApi.CoreAudio
             }
         }
 
-        internal string GetDefaultDeviceId(DeviceType deviceType, Role role)
+        public string GetDefaultDeviceId(DeviceType deviceType, Role role)
         {
             IMultimediaDevice dev;
             InnerEnumerator.GetDefaultAudioEndpoint(deviceType.AsEDataFlow(), role.AsERole(), out dev);
